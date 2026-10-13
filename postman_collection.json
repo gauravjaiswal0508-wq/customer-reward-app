@@ -1,0 +1,25 @@
+{
+  "info": {
+    "name": "Customer Rewards API",
+    "description": "Smoke tests for the Java 8 Spring Boot customer rewards API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{"key": "baseUrl", "value": "http://localhost:8080"}],
+  "item": [
+    {
+      "name": "Rewards - three months",
+      "request": {"method": "GET", "header": [], "url": "{{baseUrl}}/api/rewards/C001?months=3"},
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["pm.test('HTTP 200', function () { pm.response.to.have.status(200); });", "pm.test('Customer and totals are returned', function () { const body = pm.response.json(); pm.expect(body.customerId).to.eql('C001'); pm.expect(body.monthlyRewards).to.be.an('array').with.lengthOf(3); pm.expect(body.transactions).to.be.an('array'); pm.expect(body.totalRewardPoints).to.be.a('number'); });"]}}]
+    },
+    {
+      "name": "Rewards - unknown customer (404)",
+      "request": {"method": "GET", "header": [], "url": "{{baseUrl}}/api/rewards/UNKNOWN?months=3"},
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["pm.test('HTTP 404', function () { pm.response.to.have.status(404); });"]}}]
+    },
+    {
+      "name": "Rewards - invalid timeframe (400)",
+      "request": {"method": "GET", "header": [], "url": "{{baseUrl}}/api/rewards/C001?months=0"},
+      "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": ["pm.test('HTTP 400', function () { pm.response.to.have.status(400); });"]}}]
+    }
+  ]
+}
