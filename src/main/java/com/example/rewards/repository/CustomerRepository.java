@@ -13,9 +13,9 @@ public class CustomerRepository {
     private final Map<String, Customer> customers = new LinkedHashMap<String, Customer>();
 
     public CustomerRepository() {
-        customers.put("C001", new Customer("C001", "Aarav Sharma", "aarav@example.com"));
-        customers.put("C002", new Customer("C002", "Maya Patel", "maya@example.com"));
-        customers.put("C003", new Customer("C003", "Rohan Desai", "rohan@example.com"));
+        customers.put("C001", new Customer("C001", "Gaurav Shah", "gaurav@example.com"));
+        customers.put("C002", new Customer("C002", "Meeta Patil", "meeta@example.com"));
+        customers.put("C003", new Customer("C003", "Rohit Desai", "rohit@example.com"));
     }
 
     public Optional<Customer> findById(String id) {

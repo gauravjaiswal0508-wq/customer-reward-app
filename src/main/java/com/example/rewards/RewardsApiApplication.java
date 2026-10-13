@@ -9,5 +9,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class RewardsApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(RewardsApiApplication.class, args);
+        System.out.println("Application Started successfully");
     }
 }
